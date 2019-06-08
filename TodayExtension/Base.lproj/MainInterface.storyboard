@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="M4Y-Lb-cyx">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Today View Controller-->
+        <scene sceneID="cwh-vc-ff4">
+            <objects>
+                <viewController id="M4Y-Lb-cyx" customClass="TodayViewController" customModule="TodayExtension" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" simulatedAppContext="notificationCenter" id="S3S-Oj-5AN">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сделать до" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbw-55-tSM">
+                                <rect key="frame" x="35" y="108" width="82" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ближайшая задача" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GbJ-zs-0HT">
+                                <rect key="frame" x="35" y="20" width="250" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заголовок" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xa8-PQ-WMX">
+                                <rect key="frame" x="35" y="71" width="250" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Заметка" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vDH-3y-H1x">
+                                <rect key="frame" x="35" y="144" width="250" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Дата" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="maT-4y-Lz7">
+                                <rect key="frame" x="141" y="108" width="144" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="GbJ-zs-0HT" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="35" id="4IZ-Ds-7ny"/>
+                            <constraint firstItem="maT-4y-Lz7" firstAttribute="leading" secondItem="Xbw-55-tSM" secondAttribute="trailing" constant="24" id="58F-qt-NAV"/>
+                            <constraint firstItem="Xbw-55-tSM" firstAttribute="top" secondItem="Xa8-PQ-WMX" secondAttribute="bottom" constant="16" id="CgT-U5-GiL"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="Xa8-PQ-WMX" secondAttribute="trailing" constant="35" id="IMY-kY-WsX"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="maT-4y-Lz7" secondAttribute="trailing" constant="35" id="Ma1-aK-MSk"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="vDH-3y-H1x" secondAttribute="trailing" constant="35" id="NVV-g7-AfS"/>
+                            <constraint firstItem="ssy-KU-ocm" firstAttribute="trailing" secondItem="GbJ-zs-0HT" secondAttribute="trailing" constant="35" id="PXB-lw-hhj"/>
+                            <constraint firstItem="vDH-3y-H1x" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="35" id="QEm-dq-FPJ"/>
+                            <constraint firstItem="Xa8-PQ-WMX" firstAttribute="top" secondItem="GbJ-zs-0HT" secondAttribute="bottom" constant="27" id="au6-7C-2QD"/>
+                            <constraint firstItem="Xa8-PQ-WMX" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="35" id="bDk-rq-FBR"/>
+                            <constraint firstItem="Xbw-55-tSM" firstAttribute="leading" secondItem="ssy-KU-ocm" secondAttribute="leading" constant="35" id="byc-u0-9At"/>
+                            <constraint firstItem="maT-4y-Lz7" firstAttribute="top" secondItem="Xa8-PQ-WMX" secondAttribute="bottom" constant="16" id="jrM-JP-Let"/>
+                            <constraint firstItem="GbJ-zs-0HT" firstAttribute="top" secondItem="ssy-KU-ocm" secondAttribute="top" constant="20" id="nnB-H2-W6N"/>
+                            <constraint firstItem="vDH-3y-H1x" firstAttribute="top" secondItem="Xbw-55-tSM" secondAttribute="bottom" constant="18" id="wuU-Hg-D6f"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ssy-KU-ocm"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="200"/>
+                    <connections>
+                        <outlet property="constraint" destination="au6-7C-2QD" id="xzZ-FH-bGi"/>
+                        <outlet property="deadline" destination="maT-4y-Lz7" id="MLN-VW-Hjk"/>
+                        <outlet property="headline" destination="Xa8-PQ-WMX" id="W5R-dK-0FD"/>
+                        <outlet property="immediateTaskLabel" destination="GbJ-zs-0HT" id="CMj-Fd-aPB"/>
+                        <outlet property="label" destination="Xbw-55-tSM" id="QJm-3W-EW7"/>
+                        <outlet property="note" destination="vDH-3y-H1x" id="AIg-wC-8sS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vXp-U4-Rya" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40" y="25.187406296851577"/>
+        </scene>
+    </scenes>
+</document>
