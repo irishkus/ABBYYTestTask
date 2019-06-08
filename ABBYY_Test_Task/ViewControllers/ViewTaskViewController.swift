@@ -26,7 +26,8 @@ class ViewTaskViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         showTask()
     }
-
+    
+//функция заполнения лейблов данными выбранной на просмотр задачи
     func showTask() {
         guard let int = sharedDefaults?.integer(forKey: "viewTask") else { return }
         let defaults = sharedDefaults?.dictionary(forKey: "\(int)") as? [String: String] ?? [String: String]()
@@ -35,16 +36,10 @@ class ViewTaskViewController: UIViewController {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy-MM-dd HH:mm"
         if let date = dateFormatter.date(from: defaults["deadline"] ?? "") {
-            print(dateFormatterPrint.string(from: date))
             deadline.text = dateFormatterPrint.string(from: date)
-        } else {
-            print("There was an error decoding the string")
         }
         if let date = dateFormatter.date(from: defaults["dataCreate"] ?? "") {
-            print(dateFormatterPrint.string(from: date))
             dateCreate.text = dateFormatterPrint.string(from: date)
-        } else {
-            print("There was an error decoding the string")
         }
         headline.text = defaults["headLine"]
         status.text = defaults["status"]

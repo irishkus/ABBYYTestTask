@@ -37,6 +37,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 self.window?.rootViewController = navigationController
                 navigationController.pushViewController(initialViewController, animated: false)
                 self.window?.makeKeyAndVisible()
+            case "CreateTaskViewController":
+                let mainStoryboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let listTaskViewController: UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "ListTask") as UIViewController
+                let initialViewController : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: "CreateTask") as UIViewController
+                self.window = UIWindow(frame: UIScreen.main.bounds)
+                let navigationController = UINavigationController(rootViewController: listTaskViewController)
+                self.window?.rootViewController = navigationController
+                navigationController.pushViewController(initialViewController, animated: false)
+                self.window?.makeKeyAndVisible()
             default:
                 break
             }

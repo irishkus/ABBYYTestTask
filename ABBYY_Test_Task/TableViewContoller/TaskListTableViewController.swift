@@ -12,26 +12,16 @@ import Foundation
 class TaskListTableViewController: UITableViewController {
     private let dataSource = ["Все задачи", "Новая", "В процессе", "Выполнено"]
     var editTask = 0
-    var editBool = true
     let sharedDefaults = UserDefaults.init(suiteName: "group.com.TDLSI")
-    var arrayKeys = UserDefaults.init(suiteName: "group.com.TDLSI")?.array(forKey: "arrayKeys") as? [Int] ?? [Int]()
+    lazy var arrayKeys = sharedDefaults?.array(forKey: "arrayKeys") as? [Int] ?? [Int]()
     
     @IBOutlet weak var picker: UIPickerView!
-//    @IBAction func moreButton(_ sender: UIButton) {
-//        print("+++")
-//        let data = arrayKeys[sender.tag]
-//        guard let sharedDefaults = UserDefaults(suiteName: "group.com.TDLSI") else { return }
-//        sharedDefaults.set(data, forKey: "viewTask")
-//       // navigationController?.pushViewController(ViewTaskViewController(), animated: false)
-//        present(ViewTaskViewController(), animated: true, completion: nil)
-//    }
+    
     @IBAction func editButton(_ sender: UIBarButtonItem) {
         if tableView.isEditing == true {
             tableView.isEditing = false
-            editBool = false
         } else {
             tableView.isEditing = true
-            editBool = true
         }
     }
 
@@ -50,7 +40,6 @@ class TaskListTableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(arrayKeys)
         return arrayKeys.count
     }
     
@@ -62,16 +51,10 @@ class TaskListTableViewController: UITableViewController {
         let dateFormatterPrint = DateFormatter()
         dateFormatterPrint.dateFormat = "yyyy-MM-dd HH:mm"
         if let date = dateFormatter.date(from: defaults["deadline"] ?? "") {
-            print(dateFormatterPrint.string(from: date))
             cell.deadline.text = dateFormatterPrint.string(from: date)
-        } else {
-            print("There was an error decoding the string")
         }
         if let date = dateFormatter.date(from: defaults["dataCreate"] ?? "") {
-            print(dateFormatterPrint.string(from: date))
             cell.dataCreate.text = dateFormatterPrint.string(from: date)
-        } else {
-            print("There was an error decoding the string")
         }
         cell.headLine.text = defaults["headLine"]
         cell.status.text = defaults["status"]
@@ -81,6 +64,7 @@ class TaskListTableViewController: UITableViewController {
         return cell
     }
     
+    //обработка нажатия на кнопку Читать далее
     @objc func buttonAction(_ sender: UIButton) {
         let data = arrayKeys[sender.tag]
         guard let sharedDefaults = UserDefaults(suiteName: "group.com.TDLSI") else { return }
@@ -94,10 +78,10 @@ class TaskListTableViewController: UITableViewController {
         return .none
     }
     
+    //передача выбранной задачи по клику на ячейку в EditTaskViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "editTask" {
             let editTaskViewController : EditTaskViewController = segue.destination as! EditTaskViewController
-            //  Индекс выделенной ячейки
             if let indexPath = tableView.indexPathForSelectedRow {
               editTask = arrayKeys[indexPath.row]
                 editTaskViewController.editTask = editTask
@@ -108,7 +92,6 @@ class TaskListTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteButton = UITableViewRowAction(style: .normal, title: "Удалить") { (rowAction, indexPath) in
             let key = self.arrayKeys.remove(at: indexPath.row)
-            print("key = \(key)")
             self.sharedDefaults?.removeObject(forKey: "\(key)")
             self.sharedDefaults?.set(self.arrayKeys, forKey: "arrayKeys")
             tableView.reloadData()
@@ -141,7 +124,7 @@ extension TaskListTableViewController: UIPickerViewDataSource, UIPickerViewDeleg
             tableView.reloadData()
         }
     }
-    
+    //функция сортирующая по статусу
     func statusTask(status: String) -> [Int] {
         var arrayStatusTask = [Int]()
         arrayKeys = sharedDefaults?.array(forKey: "arrayKeys") as? [Int] ?? [Int]()

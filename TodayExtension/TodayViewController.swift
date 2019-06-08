@@ -24,6 +24,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         self.extensionContext?.widgetLargestAvailableDisplayMode = .expanded
         immediateTask()
+        //обработка нажатия на вью
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(goUrl(_:)))
@@ -31,6 +32,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         view.isUserInteractionEnabled = true
     }
     
+    //заполнение лейблов данными задачи или информационным сообщением
     func immediateTask() {
         let key = searchImmediateTask()
         if key == -1 {
@@ -56,6 +58,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
     }
     
+    //функция поиска ближайшей не выпоненной задачи, если возвращает -1, значит таких задач нет, все просрочены или выполнены
     func searchImmediateTask() -> Int {
         let sharedDefaults = UserDefaults.init(suiteName: "group.com.TDLSI")
         let arrayKeys = sharedDefaults?.array(forKey: "arrayKeys") as? [Int] ?? [Int]()
@@ -81,6 +84,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         return keyImmediateTask
     }
     
+    //делаем виджет изменяемым по высоте, maxHeight зависит от наличия ближайшей невыполненной задачи
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
         if activeDisplayMode == .compact {
             self.preferredContentSize = maxSize
@@ -89,6 +93,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
     }
     
+   //функция перехода на нужный экран, если нет невыполненных задач, то переходим на список всех задач
     @objc func goUrl(_ sender: UITapGestureRecognizer) {
         let key = searchImmediateTask()
         if key == -1 {
@@ -108,7 +113,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 }
             })
         }
-        
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {

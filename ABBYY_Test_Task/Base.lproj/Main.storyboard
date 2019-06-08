@@ -154,7 +154,7 @@
         <!--Создание задачи-->
         <scene sceneID="LZj-jq-YGZ">
             <objects>
-                <viewController id="8FY-Od-09s" customClass="CreateViewController" customModule="ABBYY_Test_Task" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateTask" id="8FY-Od-09s" customClass="CreateViewController" customModule="ABBYY_Test_Task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0IW-6i-t92">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -383,7 +383,6 @@
         <!--Редактирование задачи-->
         <scene sceneID="UzZ-Jb-T3F">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LiB-KW-13L" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="EditTask" id="ajW-O2-fmD" customClass="EditTaskViewController" customModule="ABBYY_Test_Task" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XK0-3p-A1Y">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -506,6 +505,7 @@
                         <outlet property="status" destination="oLs-Pl-Rfk" id="n49-rS-kz0"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LiB-KW-13L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1800.8" y="400.74962518740631"/>
         </scene>

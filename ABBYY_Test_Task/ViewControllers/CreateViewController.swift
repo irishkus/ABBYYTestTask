@@ -9,9 +9,13 @@
 import UIKit
 
 class CreateViewController: UIViewController {
-
+    
+    let sharedDefaults = UserDefaults.init(suiteName: "group.com.TDLSI")
     var deadline = ""
-    var arrayKeys = UserDefaults.init(suiteName: "group.com.TDLSI")?.array(forKey: "arrayKeys") as? [Int] ?? [Int]()
+    lazy var arrayKeys = sharedDefaults?.array(forKey: "arrayKeys") as? [Int] ?? [Int]()
+    
+    @IBOutlet weak var note: UITextView!
+    @IBOutlet weak var headline: UITextField!
     
     @IBAction func dataPicker(_ sender: UIDatePicker) {
         deadline = sender.date.description
@@ -20,6 +24,7 @@ class CreateViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    //создание новой записи
     @IBAction func createButton(_ sender: UIButton) {
         var dictionary: [String: String] = [:]
         dictionary["dataCreate"] = NSDate().description
@@ -42,26 +47,28 @@ class CreateViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var note: UITextView!
-    @IBOutlet weak var headline: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(
             target: self,
             action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        view.isUserInteractionEnabled = true
+        showSharedTask()
     }
     
     //показываем ошибку если Заголовок не заполнен
     func showError() {
-        // Создаем контроллер
         let alter = UIAlertController(title: "Ошибка", message: "Заполните поле Заголовок, это обязательное поле", preferredStyle: .alert)
-        // Создаем кнопку для UIAlertController
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        // Добавляем кнопку на UIAlertController
         alter.addAction(action)
-        // Показываем UIAlertController
         present(alter, animated: true, completion: nil)
+    }
+    
+    func showSharedTask() {
+        guard let headlineShareTask = sharedDefaults?.string(forKey: "shareTask") else { return }
+        headline.text = headlineShareTask
+        sharedDefaults?.removeObject(forKey: "shareTask")
     }
     
     @objc func dismissKeyboard() {

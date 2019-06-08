@@ -25,7 +25,7 @@ class EditTaskViewController: UIViewController {
     @IBAction func deadline(_ sender: UIDatePicker) {
         deadline = sender.date.description
     }
-    
+    //сохранение измененной задачи
     @IBAction func saveButton(_ sender: UIButton) {
         var dictionary = sharedDefaults?.dictionary(forKey: "\(editTask)") as? [String: String] ?? [String: String]()
         dictionary["status"] = statusTask
@@ -44,23 +44,25 @@ class EditTaskViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    //показываем ошибку если Заголовок не заполнен
+    //отрисовка ошибки если Заголовок не заполнен
     func showError() {
-        // Создаем контроллер
         let alter = UIAlertController(title: "Ошибка", message: "Заполните поле Заголовок, это обязательное поле", preferredStyle: .alert)
-        // Создаем кнопку для UIAlertController
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        // Добавляем кнопку на UIAlertController
         alter.addAction(action)
-        // Показываем UIAlertController
         present(alter, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         openTask()
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(
+            target: self,
+            action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
+        view.isUserInteractionEnabled = true
     }
     
+    //открытие задачи на редактирование с заполненными данными
     func openTask() {
         if editTask == -1 {
             guard let int = sharedDefaults?.integer(forKey: "viewTask") else { return }
@@ -82,6 +84,9 @@ class EditTaskViewController: UIViewController {
         deadline = defaults["deadline"] ?? NSDate().description
     }
 
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }
 
 extension EditTaskViewController: UIPickerViewDelegate, UIPickerViewDataSource {
